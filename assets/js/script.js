@@ -5,7 +5,7 @@ var numericNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var specialCharacters = [" ", "!", "", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "\\", "^", "_", "{", "}", "|", "~"];
 var allCharacters = [lowercaseLetters, uppercaseLetters, numericNumbers, specialCharacters];
 
-var combinedArray;
+var combinedArray = [];
 
 var includeLower;
 var includeUpper;
@@ -13,45 +13,52 @@ var includeNumber;
 var includeSpecial;
 
 function generatePassword() {
-    var length = prompt("How long do you want the password to be?");
-    console.log(length);
+    var passwordLength = prompt("How long do you want the password to be?");
+    console.log(passwordLength);
 
-    if (length < 8 || length > 128) {
+    if (passwordLength < 8 || passwordLength > 128) {
         alert("Password must be between 8 and 128 characters!");
         return generatePassword();
     } else {
         prompts();
     }
 
-    if (includeLower) {
-        combinedArray.addRange(lowercaseLetters);
-        var storeLower = lowercaseLetters[Math.floor(Math.random() * lowercaseLetters.length)];
+    var storeLower = "";
+    var storeUpper = "";
+    var storeNumber = "";
+    var storeSpecial = "";
 
-        return storeLower;
+    if (includeLower) {
+        combinedArray = combinedArray.concat(lowercaseLetters);
+        storeLower = lowercaseLetters[Math.floor(Math.random() * lowercaseLetters.length)];
     }
 
     if (includeUpper) {
-        combinedArray.addRange(uppercaseLetters);
-        var storeUpper = uppercaseLetters[Math.floor(Math.random() * uppercaseLetters.length)];
+        combinedArray = combinedArray.concat(uppercaseLetters);
+        storeUpper = uppercaseLetters[Math.floor(Math.random() * uppercaseLetters.length)];
         //Generate at least one from these if included
     }
 
     if (includeNumber) {
-        combinedArray.addRange(numericNumbers);
-        var storeNumber = numericNumbers[Math.floor(Math.random() * numericNumbers.length)];
+        combinedArray = combinedArray.concat(numericNumbers);
+        storeNumber = numericNumbers[Math.floor(Math.random() * numericNumbers.length)];
     }
 
     if (includeSpecial) {
-        combinedArray.addRange(specialCharacters);
-        var storeSpecial = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+        combinedArray = combinedArray.concat(specialCharacters);
+        storeSpecial = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
     }
-
 
     //Return 1 from each selected as well as all extra characters from combinedArray,
     //use Math.random to randomize position
-    return storeLower + storeUpper + storeNumber + storeSpecial;
+    var password = storeLower + storeUpper + storeNumber + storeSpecial;
+    var characterCount = password.length;
 
-    //Loop as many times as needed for number of characters and use combinedArray as the array to pull from
+    for (var i = characterCount; i < passwordLength; i++) {
+        password += combinedArray[Math.floor(Math.random() * combinedArray.length)];
+    }
+
+    return password;
 }
 
 var prompts = function() {
@@ -70,10 +77,11 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword();
+    console.log(password);
+
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
-
 }
 
 // Add event listener to generate button
