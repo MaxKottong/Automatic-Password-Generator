@@ -1,18 +1,16 @@
-// Assignment code here
-var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numericNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-var specialCharacters = [" ", "!", "", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "\\", "^", "_", "{", "}", "|", "~"];
-var allCharacters = [lowercaseLetters, uppercaseLetters, numericNumbers, specialCharacters];
-
-var combinedArray = [];
-
 var includeLower;
 var includeUpper;
 var includeNumber;
 var includeSpecial;
 
 function generatePassword() {
+    var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var numerics = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    var specialCharacters = ["!", "", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "\\", "^", "_", "{", "}", "|", "~"];
+
+    var combinedArray = [];
+
     var passwordLength = prompt("How long do you want the password to be?");
     console.log(passwordLength);
 
@@ -40,8 +38,8 @@ function generatePassword() {
     }
 
     if (includeNumber) {
-        combinedArray = combinedArray.concat(numericNumbers);
-        storeNumber = numericNumbers[Math.floor(Math.random() * numericNumbers.length)];
+        combinedArray = combinedArray.concat(numerics);
+        storeNumber = numerics[Math.floor(Math.random() * numerics.length)];
     }
 
     if (includeSpecial) {
@@ -61,7 +59,7 @@ function generatePassword() {
     return password;
 }
 
-var prompts = function() {
+var prompts = function () {
     includeLower = window.confirm("Would you like to include lowercase letters?");
 
     includeUpper = window.confirm("Would you like to include uppercase letters?");
