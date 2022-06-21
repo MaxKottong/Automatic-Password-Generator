@@ -11,12 +11,14 @@ function generatePassword() {
 
     var combinedArray = [];
 
-    var passwordLength = prompt("How long do you want the password to be?");
+    var passwordLength = parseInt(prompt("How long do you want the password to be?"));
     console.log(passwordLength);
 
     if (passwordLength < 8 || passwordLength > 128) {
         alert("Password must be between 8 and 128 characters!");
         return generatePassword();
+    } else if (isNaN(passwordLength)) {
+        alert("Must input a number!");
     } else {
         prompts();
     }
