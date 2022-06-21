@@ -47,8 +47,6 @@ function generatePassword() {
         storeSpecial = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
     }
 
-    //Return 1 from each selected as well as all extra characters from combinedArray,
-    //use Math.random to randomize position
     var password = storeLower + storeUpper + storeNumber + storeSpecial;
     var characterCount = password.length;
 
