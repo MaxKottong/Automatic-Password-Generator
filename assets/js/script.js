@@ -11,7 +11,7 @@ function generatePassword() {
 
     var combinedArray = [];
 
-    var passwordLength = parseInt(prompt("How long do you want the password to be?"));
+    var passwordLength = (prompt("How long do you want the password to be?"));
     console.log(passwordLength);
 
     if (passwordLength < 8 || passwordLength > 128) {
